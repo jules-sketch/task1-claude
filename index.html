@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buddie - Roman Numeral Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="calculator">
+        <div class="header">
+            <h1>Buddie</h1>
+            <p class="subtitle">Roman Numeral Calculator</p>
+        </div>
+
+        <div class="display">
+            <div class="display-arabic" id="displayArabic">0</div>
+            <div class="display-roman" id="displayRoman">NULLA</div>
+        </div>
+
+        <div class="buttons">
+            <button class="btn btn-function" onclick="clearDisplay()">C</button>
+            <button class="btn btn-function" onclick="deleteDigit()">DEL</button>
+            <button class="btn btn-operator" onclick="setOperator('/')">÷</button>
+            <button class="btn btn-operator" onclick="setOperator('*')">×</button>
+
+            <button class="btn btn-number" onclick="appendNumber('7')">VII</button>
+            <button class="btn btn-number" onclick="appendNumber('8')">VIII</button>
+            <button class="btn btn-number" onclick="appendNumber('9')">IX</button>
+            <button class="btn btn-operator" onclick="setOperator('-')">−</button>
+
+            <button class="btn btn-number" onclick="appendNumber('4')">IV</button>
+            <button class="btn btn-number" onclick="appendNumber('5')">V</button>
+            <button class="btn btn-number" onclick="appendNumber('6')">VI</button>
+            <button class="btn btn-operator" onclick="setOperator('+')">+</button>
+
+            <button class="btn btn-number" onclick="appendNumber('1')">I</button>
+            <button class="btn btn-number" onclick="appendNumber('2')">II</button>
+            <button class="btn btn-number" onclick="appendNumber('3')">III</button>
+            <button class="btn btn-equals" onclick="calculate()" style="grid-row: span 2;">=</button>
+
+            <button class="btn btn-number" onclick="appendNumber('0')" style="grid-column: span 2;">NULLA</button>
+            <button class="btn btn-number" onclick="appendNumber('10')">X</button>
+        </div>
+
+        <div class="footer">
+            <p class="info">Enter numbers to see Roman numeral conversion</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
