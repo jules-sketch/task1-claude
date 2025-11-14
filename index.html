@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buddie - Roman Numeral Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="calculator">
+        <div class="header">
+            <h1>Buddie</h1>
+            <p class="subtitle">Roman Numeral Calculator</p>
+        </div>
+
+        <div class="display-container">
+            <div class="display" id="display">
+                <div class="arabic-display" id="arabicDisplay">0</div>
+                <div class="roman-display" id="romanDisplay">NULLA</div>
+            </div>
+        </div>
+
+        <div class="buttons">
+            <button class="btn btn-function" onclick="clearDisplay()">C</button>
+            <button class="btn btn-function" onclick="deleteLast()">DEL</button>
+            <button class="btn btn-operator" onclick="setOperator('÷')">÷</button>
+            <button class="btn btn-operator" onclick="setOperator('×')">×</button>
+
+            <button class="btn btn-number" onclick="appendNumber('7')">VII</button>
+            <button class="btn btn-number" onclick="appendNumber('8')">VIII</button>
+            <button class="btn btn-number" onclick="appendNumber('9')">IX</button>
+            <button class="btn btn-operator" onclick="setOperator('-')">−</button>
+
+            <button class="btn btn-number" onclick="appendNumber('4')">IV</button>
+            <button class="btn btn-number" onclick="appendNumber('5')">V</button>
+            <button class="btn btn-number" onclick="appendNumber('6')">VI</button>
+            <button class="btn btn-operator" onclick="setOperator('+')">+</button>
+
+            <button class="btn btn-number" onclick="appendNumber('1')">I</button>
+            <button class="btn btn-number" onclick="appendNumber('2')">II</button>
+            <button class="btn btn-number" onclick="appendNumber('3')">III</button>
+            <button class="btn btn-equals" onclick="calculate()">=</button>
+
+            <button class="btn btn-number btn-zero" onclick="appendNumber('0')">NULLA</button>
+            <button class="btn btn-number" onclick="appendNumber('10')">X</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
