@@ -1,0 +1,237 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.calculator {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
+    width: 320px;
+}
+
+.display {
+    background: #2d3748;
+    color: white;
+    font-size: 2em;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: right;
+    margin-bottom: 20px;
+    min-height: 60px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.btn {
+    padding: 20px;
+    font-size: 1.2em;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    background: #f7fafc;
+    color: #2d3748;
+    transition: all 0.2s;
+    font-weight: 600;
+}
+
+.btn:hover {
+    background: #e2e8f0;
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-operator {
+    background: #667eea;
+    color: white;
+}
+
+.btn-operator:hover {
+    background: #5568d3;
+}
+
+.btn-equals {
+    background: #48bb78;
+    color: white;
+}
+
+.btn-equals:hover {
+    background: #38a169;
+}
+
+.btn-clear {
+    background: #f56565;
+    color: white;
+}
+
+.btn-clear:hover {
+    background: #e53e3e;
+}
+
+.btn-delete {
+    background: #ed8936;
+    color: white;
+}
+
+.btn-delete:hover {
+    background: #dd6b20;
+}
+
+.btn-history {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1em;
+    background: #4299e1;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.btn-history:hover {
+    background: #3182ce;
+    transform: translateY(-2px);
+}
+
+.history-panel {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
+    width: 320px;
+    max-height: 500px;
+    display: none;
+    flex-direction: column;
+}
+
+.history-panel.active {
+    display: flex;
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.history-header h2 {
+    color: #2d3748;
+    font-size: 1.5em;
+}
+
+.btn-close {
+    background: none;
+    border: none;
+    font-size: 2em;
+    color: #718096;
+    cursor: pointer;
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s;
+}
+
+.btn-close:hover {
+    background: #f7fafc;
+    color: #2d3748;
+}
+
+.history-list {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 15px;
+}
+
+.history-item {
+    padding: 12px;
+    margin-bottom: 8px;
+    background: #f7fafc;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.history-item:hover {
+    background: #e2e8f0;
+    transform: translateX(5px);
+}
+
+.history-expression {
+    color: #718096;
+    font-size: 0.9em;
+    margin-bottom: 4px;
+}
+
+.history-result {
+    color: #2d3748;
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.no-history {
+    text-align: center;
+    color: #a0aec0;
+    padding: 40px 20px;
+    font-style: italic;
+}
+
+.btn-clear-history {
+    width: 100%;
+    padding: 12px;
+    background: #f56565;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s;
+}
+
+.btn-clear-history:hover {
+    background: #e53e3e;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
