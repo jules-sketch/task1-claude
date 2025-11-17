@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buddie - Roman Numeral Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="calculator-container">
+        <div class="calculator">
+            <div class="header">
+                <h1>Buddie</h1>
+                <p class="subtitle">Roman Numeral Calculator</p>
+            </div>
+
+            <div class="display-container">
+                <div class="display" id="display">0</div>
+                <div class="roman-display" id="romanDisplay">NULLA</div>
+            </div>
+
+            <div class="buttons">
+                <button class="button number" data-value="7">VII</button>
+                <button class="button number" data-value="8">VIII</button>
+                <button class="button number" data-value="9">IX</button>
+                <button class="button operator" data-operator="/">÷</button>
+
+                <button class="button number" data-value="4">IV</button>
+                <button class="button number" data-value="5">V</button>
+                <button class="button number" data-value="6">VI</button>
+                <button class="button operator" data-operator="*">×</button>
+
+                <button class="button number" data-value="1">I</button>
+                <button class="button number" data-value="2">II</button>
+                <button class="button number" data-value="3">III</button>
+                <button class="button operator" data-operator="-">−</button>
+
+                <button class="button clear">C</button>
+                <button class="button number" data-value="0">0</button>
+                <button class="button equals">=</button>
+                <button class="button operator" data-operator="+">+</button>
+            </div>
+
+            <div class="mode-toggle">
+                <label class="switch">
+                    <input type="checkbox" id="modeToggle">
+                    <span class="slider">
+                        <span class="mode-label">Arabic</span>
+                        <span class="mode-label">Roman</span>
+                    </span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
