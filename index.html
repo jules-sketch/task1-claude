@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buddie - Roman Numeral Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Buddie</h1>
+            <p class="subtitle">Your Roman Numeral Companion</p>
+        </header>
+
+        <main>
+            <!-- Calculator Section -->
+            <section class="calculator-section">
+                <h2>Roman Numeral Calculator</h2>
+                <div class="display">
+                    <div class="display-label">Result:</div>
+                    <div id="display" class="display-value">I</div>
+                    <div class="display-decimal">(I)</div>
+                </div>
+
+                <div class="input-group">
+                    <label for="num1">Number I:</label>
+                    <input type="text" id="num1" placeholder="Enter Roman numeral (e.g., X)" maxlength="15">
+                </div>
+
+                <div class="input-group">
+                    <label for="num2">Number II:</label>
+                    <input type="text" id="num2" placeholder="Enter Roman numeral (e.g., V)" maxlength="15">
+                </div>
+
+                <div class="button-group">
+                    <button onclick="calculate('add')" class="btn">Add (+)</button>
+                    <button onclick="calculate('subtract')" class="btn">Subtract (-)</button>
+                    <button onclick="calculate('multiply')" class="btn">Multiply (×)</button>
+                    <button onclick="calculate('divide')" class="btn">Divide (÷)</button>
+                </div>
+            </section>
+
+            <!-- Converter Section -->
+            <section class="converter-section">
+                <h2>Number Converter</h2>
+
+                <div class="input-group">
+                    <label for="decimalInput">Decimal Number:</label>
+                    <input type="number" id="decimalInput" placeholder="I-III,CMXCIX" min="1" max="3999">
+                    <button onclick="convertToRoman()" class="btn btn-convert">Convert to Roman</button>
+                </div>
+
+                <div class="conversion-result">
+                    <div class="result-label">Roman Numeral:</div>
+                    <div id="romanResult" class="result-value">-</div>
+                </div>
+
+                <div class="input-group">
+                    <label for="romanInput">Roman Numeral:</label>
+                    <input type="text" id="romanInput" placeholder="I, V, X, L, C, D, M" maxlength="15">
+                    <button onclick="convertToDecimal()" class="btn btn-convert">Convert to Decimal</button>
+                </div>
+
+                <div class="conversion-result">
+                    <div class="result-label">Decimal Number:</div>
+                    <div id="decimalResult" class="result-value">-</div>
+                </div>
+            </section>
+
+            <!-- Counter Section -->
+            <section class="counter-section">
+                <h2>Roman Counter</h2>
+                <div class="counter-display">
+                    <div id="counter" class="counter-value">I</div>
+                </div>
+                <div class="button-group">
+                    <button onclick="incrementCounter()" class="btn">Increment (+I)</button>
+                    <button onclick="decrementCounter()" class="btn">Decrement (-I)</button>
+                    <button onclick="resetCounter()" class="btn">Reset</button>
+                </div>
+            </section>
+
+            <!-- Reference Table -->
+            <section class="reference-section">
+                <h2>Roman Numeral Reference</h2>
+                <div class="reference-grid">
+                    <div class="reference-item">
+                        <div class="roman">I</div>
+                        <div class="decimal">I</div>
+                    </div>
+                    <div class="reference-item">
+                        <div class="roman">V</div>
+                        <div class="decimal">V</div>
+                    </div>
+                    <div class="reference-item">
+                        <div class="roman">X</div>
+                        <div class="decimal">X</div>
+                    </div>
+                    <div class="reference-item">
+                        <div class="roman">L</div>
+                        <div class="decimal">L</div>
+                    </div>
+                    <div class="reference-item">
+                        <div class="roman">C</div>
+                        <div class="decimal">C</div>
+                    </div>
+                    <div class="reference-item">
+                        <div class="roman">D</div>
+                        <div class="decimal">D</div>
+                    </div>
+                    <div class="reference-item">
+                        <div class="roman">M</div>
+                        <div class="decimal">M</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>© MMXXV Buddie - All Rights Reserved</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
