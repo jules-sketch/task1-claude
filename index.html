@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roman Numeral Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3a5f 0%, #2c5aa0 50%, #1e3a5f 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .calculator {
+            background: linear-gradient(145deg, #2563eb, #1d4ed8);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            width: 100%;
+            max-width: 380px;
+        }
+
+        .calculator-header {
+            text-align: center;
+            color: #e0e7ff;
+            margin-bottom: 20px;
+        }
+
+        .calculator-header h1 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .display {
+            background: #0f172a;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: inset 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        .display-roman {
+            color: #60a5fa;
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: right;
+            min-height: 2.5rem;
+            word-wrap: break-word;
+            text-shadow: 0 0 10px rgba(96, 165, 250, 0.5);
+        }
+
+        .display-decimal {
+            color: #94a3b8;
+            font-size: 1rem;
+            text-align: right;
+            margin-top: 8px;
+            min-height: 1.2rem;
+        }
+
+        .display-operation {
+            color: #7dd3fc;
+            font-size: 0.9rem;
+            text-align: right;
+            margin-bottom: 5px;
+            min-height: 1.1rem;
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 18px 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-numeral {
+            background: linear-gradient(145deg, #3b82f6, #2563eb);
+            color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-numeral:hover {
+            background: linear-gradient(145deg, #60a5fa, #3b82f6);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-numeral:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-operator {
+            background: linear-gradient(145deg, #0ea5e9, #0284c7);
+            color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-operator:hover {
+            background: linear-gradient(145deg, #38bdf8, #0ea5e9);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-operator:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-action {
+            background: linear-gradient(145deg, #6366f1, #4f46e5);
+            color: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-action:hover {
+            background: linear-gradient(145deg, #818cf8, #6366f1);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-action:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-equals {
+            background: linear-gradient(145deg, #22d3ee, #06b6d4);
+            color: #0f172a;
+            grid-column: span 2;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-equals:hover {
+            background: linear-gradient(145deg, #67e8f9, #22d3ee);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-equals:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3),
+                        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-clear {
+            background: linear-gradient(145deg, #f43f5e, #e11d48);
+            color: #ffffff;
+        }
+
+        .btn-clear:hover {
+            background: linear-gradient(145deg, #fb7185, #f43f5e);
+            transform: translateY(-2px);
+        }
+
+        .error {
+            color: #fca5a5 !important;
+            font-size: 1rem !important;
+        }
+
+        .info {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            color: #bfdbfe;
+            font-size: 0.8rem;
+        }
+
+        .info p {
+            margin-bottom: 5px;
+        }
+
+        .info-title {
+            font-weight: 600;
+            color: #93c5fd;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <div class="calculator-header">
+            <h1>Roman Numeral Calculator</h1>
+        </div>
+
+        <div class="display">
+            <div class="display-operation" id="operation"></div>
+            <div class="display-roman" id="display-roman">0</div>
+            <div class="display-decimal" id="display-decimal">= 0</div>
+        </div>
+
+        <div class="buttons">
+            <!-- Row 1 -->
+            <button class="btn btn-action btn-clear" onclick="clearAll()">C</button>
+            <button class="btn btn-action" onclick="backspace()">DEL</button>
+            <button class="btn btn-operator" onclick="setOperator('/')">/</button>
+            <button class="btn btn-operator" onclick="setOperator('*')">×</button>
+
+            <!-- Row 2 -->
+            <button class="btn btn-numeral" onclick="appendNumeral('M')">M</button>
+            <button class="btn btn-numeral" onclick="appendNumeral('D')">D</button>
+            <button class="btn btn-numeral" onclick="appendNumeral('C')">C</button>
+            <button class="btn btn-operator" onclick="setOperator('-')">-</button>
+
+            <!-- Row 3 -->
+            <button class="btn btn-numeral" onclick="appendNumeral('L')">L</button>
+            <button class="btn btn-numeral" onclick="appendNumeral('X')">X</button>
+            <button class="btn btn-numeral" onclick="appendNumeral('V')">V</button>
+            <button class="btn btn-operator" onclick="setOperator('+')">+</button>
+
+            <!-- Row 4 -->
+            <button class="btn btn-numeral" onclick="appendNumeral('I')">I</button>
+            <button class="btn btn-action" onclick="toggleSign()">±</button>
+            <button class="btn btn-equals" onclick="calculate()">=</button>
+        </div>
+
+        <div class="info">
+            <div class="info-title">Roman Numerals:</div>
+            <p>I=1, V=5, X=10, L=50, C=100, D=500, M=1000</p>
+            <p>Examples: IV=4, IX=9, XL=40, XC=90, CD=400, CM=900</p>
+        </div>
+    </div>
+
+    <script>
+        let currentValue = '';
+        let previousValue = '';
+        let operator = '';
+        let shouldResetDisplay = false;
+        let isNegative = false;
+
+        // Roman numeral values mapping
+        const romanValues = {
+            'I': 1, 'V': 5, 'X': 10, 'L': 50,
+            'C': 100, 'D': 500, 'M': 1000
+        };
+
+        // Convert Roman numeral to decimal
+        function romanToDecimal(roman) {
+            if (!roman || roman === '0') return 0;
+
+            let result = 0;
+            const upperRoman = roman.toUpperCase();
+
+            for (let i = 0; i < upperRoman.length; i++) {
+                const current = romanValues[upperRoman[i]];
+                const next = romanValues[upperRoman[i + 1]];
+
+                if (current === undefined) {
+                    return NaN;
+                }
+
+                if (next && current < next) {
+                    result -= current;
+                } else {
+                    result += current;
+                }
+            }
+
+            return result;
+        }
+
+        // Convert decimal to Roman numeral
+        function decimalToRoman(num) {
+            if (num === 0) return '0';
+            if (num < 0 || num > 3999) return null;
+            if (!Number.isInteger(num)) return null;
+
+            const romanNumerals = [
+                ['M', 1000], ['CM', 900], ['D', 500], ['CD', 400],
+                ['C', 100], ['XC', 90], ['L', 50], ['XL', 40],
+                ['X', 10], ['IX', 9], ['V', 5], ['IV', 4], ['I', 1]
+            ];
+
+            let result = '';
+            let remaining = num;
+
+            for (const [numeral, value] of romanNumerals) {
+                while (remaining >= value) {
+                    result += numeral;
+                    remaining -= value;
+                }
+            }
+
+            return result;
+        }
+
+        // Validate Roman numeral format
+        function isValidRoman(roman) {
+            if (!roman || roman === '0') return true;
+
+            // Basic validation pattern for Roman numerals
+            const pattern = /^M{0,3}(CM|CD|D?C{0,3})(XC|XL|L?X{0,3})(IX|IV|V?I{0,3})$/;
+            return pattern.test(roman.toUpperCase());
+        }
+
+        // Update display
+        function updateDisplay() {
+            const displayRoman = document.getElementById('display-roman');
+            const displayDecimal = document.getElementById('display-decimal');
+            const operationDisplay = document.getElementById('operation');
+
+            if (currentValue === '' || currentValue === '0') {
+                displayRoman.textContent = '0';
+                displayRoman.classList.remove('error');
+                displayDecimal.textContent = '= 0';
+            } else {
+                const decimal = romanToDecimal(currentValue);
+                const displayValue = isNegative ? `-${currentValue}` : currentValue;
+
+                if (isNaN(decimal)) {
+                    displayRoman.textContent = displayValue;
+                    displayRoman.classList.add('error');
+                    displayDecimal.textContent = '= Invalid';
+                } else {
+                    displayRoman.textContent = displayValue;
+                    displayRoman.classList.remove('error');
+                    const finalDecimal = isNegative ? -decimal : decimal;
+                    displayDecimal.textContent = `= ${finalDecimal}`;
+                }
+            }
+
+            // Show operation in progress
+            if (previousValue && operator) {
+                const prevDecimal = romanToDecimal(previousValue);
+                const opSymbol = operator === '*' ? '×' : operator;
+                operationDisplay.textContent = `${previousValue} (${prevDecimal}) ${opSymbol}`;
+            } else {
+                operationDisplay.textContent = '';
+            }
+        }
+
+        // Append Roman numeral
+        function appendNumeral(numeral) {
+            if (shouldResetDisplay) {
+                currentValue = '';
+                isNegative = false;
+                shouldResetDisplay = false;
+            }
+
+            if (currentValue === '0') {
+                currentValue = numeral;
+            } else {
+                currentValue += numeral;
+            }
+
+            updateDisplay();
+        }
+
+        // Set operator
+        function setOperator(op) {
+            if (currentValue === '' && previousValue === '') return;
+
+            if (previousValue !== '' && currentValue !== '' && !shouldResetDisplay) {
+                calculate();
+            }
+
+            if (currentValue !== '') {
+                previousValue = currentValue;
+            }
+
+            operator = op;
+            shouldResetDisplay = true;
+            isNegative = false;
+            updateDisplay();
+        }
+
+        // Calculate result
+        function calculate() {
+            if (previousValue === '' || currentValue === '' || operator === '') return;
+
+            const prev = romanToDecimal(previousValue);
+            const curr = romanToDecimal(currentValue);
+
+            if (isNaN(prev) || isNaN(curr)) {
+                currentValue = 'ERROR';
+                updateDisplay();
+                return;
+            }
+
+            let result;
+            switch (operator) {
+                case '+':
+                    result = prev + curr;
+                    break;
+                case '-':
+                    result = prev - curr;
+                    break;
+                case '*':
+                    result = prev * curr;
+                    break;
+                case '/':
+                    if (curr === 0) {
+                        currentValue = 'ERROR';
+                        previousValue = '';
+                        operator = '';
+                        shouldResetDisplay = true;
+                        updateDisplay();
+                        return;
+                    }
+                    result = Math.floor(prev / curr);
+                    break;
+            }
+
+            // Handle negative results
+            isNegative = result < 0;
+            const absResult = Math.abs(result);
+
+            // Convert result back to Roman
+            const romanResult = decimalToRoman(absResult);
+
+            if (romanResult === null) {
+                // Result out of range (> 3999 or non-integer)
+                const displayRoman = document.getElementById('display-roman');
+                const displayDecimal = document.getElementById('display-decimal');
+
+                if (absResult > 3999) {
+                    displayRoman.textContent = 'OUT OF RANGE';
+                    displayRoman.classList.add('error');
+                    displayDecimal.textContent = `= ${result}`;
+                    currentValue = '';
+                } else {
+                    displayRoman.textContent = result.toString();
+                    displayDecimal.textContent = `= ${result}`;
+                    currentValue = '';
+                }
+            } else {
+                currentValue = romanResult;
+                updateDisplay();
+            }
+
+            previousValue = '';
+            operator = '';
+            shouldResetDisplay = true;
+        }
+
+        // Clear all
+        function clearAll() {
+            currentValue = '';
+            previousValue = '';
+            operator = '';
+            shouldResetDisplay = false;
+            isNegative = false;
+            updateDisplay();
+        }
+
+        // Backspace
+        function backspace() {
+            if (shouldResetDisplay) {
+                currentValue = '';
+                shouldResetDisplay = false;
+            } else if (currentValue.length > 0) {
+                currentValue = currentValue.slice(0, -1);
+            }
+            updateDisplay();
+        }
+
+        // Toggle sign (for negative numbers)
+        function toggleSign() {
+            if (currentValue && currentValue !== '0' && currentValue !== 'ERROR') {
+                isNegative = !isNegative;
+                updateDisplay();
+            }
+        }
+
+        // Keyboard support
+        document.addEventListener('keydown', (e) => {
+            const key = e.key.toUpperCase();
+
+            if (['I', 'V', 'X', 'L', 'C', 'D', 'M'].includes(key)) {
+                appendNumeral(key);
+            } else if (['+', '-', '*', '/'].includes(e.key)) {
+                setOperator(e.key);
+            } else if (e.key === 'Enter' || e.key === '=') {
+                calculate();
+            } else if (e.key === 'Escape' || e.key === 'c' || e.key === 'C') {
+                clearAll();
+            } else if (e.key === 'Backspace') {
+                backspace();
+            }
+        });
+
+        // Initialize display
+        updateDisplay();
+    </script>
+</body>
+</html>
